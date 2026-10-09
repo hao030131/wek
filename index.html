@@ -1,10 +1,906 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>WEK Enterprise</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WEK ENT. — Building your future with quality construction, architectural design, and project management." />
+  <title>WEK ENT. | Building Your Future</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dark: #151713;
+      --green: #b6d66b;
+      --white: #fff;
+      --muted: #b8bbb4;
+      --background: #f5f5f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--dark);
+      background: var(--background);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Navigation */
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 7%;
+      color: white;
+    }
+
+    .logo {
+      font-family: "Manrope", sans-serif;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: color .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-contact {
+      padding: 12px 20px;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 4px;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      min-height: 740px;
+      height: 100svh;
+      max-height: 950px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      background: #292e28;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(10,13,10,.85) 0%, rgba(10,13,10,.53) 48%, rgba(10,13,10,.12) 100%),
+        linear-gradient(0deg, rgba(10,13,10,.45), transparent 45%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 100px 7% 40px;
+      max-width: 1000px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 35px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h1, h2, h3 {
+      font-family: "Manrope", sans-serif;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      font-size: clamp(48px, 7.5vw, 100px);
+      line-height: 1.03;
+      letter-spacing: -5px;
+      font-weight: 700;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-description {
+      max-width: 570px;
+      margin-top: 28px;
+      color: rgba(255,255,255,.8);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .button-primary {
+      background: var(--green);
+      color: #171a13;
+    }
+
+    .button-primary:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    .button-text {
+      color: white;
+    }
+
+    .button-text:hover {
+      color: var(--green);
+    }
+
+    .hero-bottom {
+      position: absolute;
+      z-index: 2;
+      bottom: 35px;
+      left: 7%;
+      right: 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scroll-line {
+      width: 45px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    /* Introduction */
+
+    .intro {
+      padding: 110px 7%;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .section-label {
+      color: #687c42;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .intro h2,
+    .section-heading h2,
+    .contact h2 {
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+    }
+
+    .intro-copy {
+      color: #62665e;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .intro-copy p + p {
+      margin-top: 18px;
+    }
+
+    .inline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #7f9655;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .inline-link:hover {
+      color: #687c42;
+    }
+
+    /* Statistics */
+
+    .stats {
+      padding: 50px 7%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #e8eadf;
+    }
+
+    .stat {
+      padding: 15px 35px;
+      border-right: 1px solid #d1d5c5;
+    }
+
+    .stat:first-child {
+      padding-left: 0;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat-number {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+    .stat-number span {
+      color: #718b43;
+    }
+
+    .stat-label {
+      margin-top: 7px;
+      color: #656a60;
+      font-size: 13px;
+    }
+
+    /* Projects */
+
+    .projects {
+      padding: 110px 7%;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+
+    .section-heading p {
+      max-width: 360px;
+      color: #686c64;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 370px;
+      background: #d9dcd2;
+      isolation: isolate;
+    }
+
+    .project-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+      z-index: -2;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(0deg, rgba(13,16,12,.85), transparent 70%);
+    }
+
+    .project-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 28px;
+      color: white;
+    }
+
+    .project-category {
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .project-info h3 {
+      margin-top: 10px;
+      font-size: 23px;
+    }
+
+    .project-info p {
+      margin-top: 8px;
+      color: rgba(255,255,255,.75);
+      font-size: 13px;
+    }
+
+    /* Contact */
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 7%;
+      color: white;
+      background: #1c211a;
+    }
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      right: -100px;
+      top: -160px;
+      border: 1px solid rgba(182,214,107,.16);
+      border-radius: 50%;
+      box-shadow: 0 0 0 60px rgba(182,214,107,.03),
+                  0 0 0 120px rgba(182,214,107,.025);
+    }
+
+    .contact-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+    }
+
+    .contact .section-label {
+      color: var(--green);
+    }
+
+    .contact-intro {
+      margin-top: 22px;
+      max-width: 430px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      padding-top: 10px;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 45px 1fr;
+      gap: 15px;
+      align-items: start;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #42483b;
+      color: var(--green);
+      font-size: 18px;
+    }
+
+    .contact-item small {
+      display: block;
+      margin-bottom: 8px;
+      color: #a3aa9a;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-item a:hover {
+      color: var(--green);
+    }
+
+    /* Footer */
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 25px 7%;
+      color: #aeb3a8;
+      background: #121510;
+      font-size: 12px;
+    }
+
+    footer .logo {
+      color: white;
+      font-size: 18px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 850px) {
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 22px 6%;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        top: 75px;
+        left: 6%;
+        right: 6%;
+        padding: 10px 20px;
+        background: #1b2019;
+        border: 1px solid #353b30;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 15px 0;
+      }
+
+      .nav-contact {
+        border: 0;
+      }
+
+      .hero {
+        min-height: 700px;
+        height: 90svh;
+      }
+
+      .hero-content {
+        padding: 90px 6% 70px;
+      }
+
+      .hero h1 {
+        font-size: clamp(45px, 13vw, 68px);
+        letter-spacing: -2.5px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-bottom {
+        left: 6%;
+        right: 6%;
+        bottom: 22px;
+      }
+
+      .intro,
+      .projects,
+      .contact {
+        padding: 75px 6%;
+      }
+
+      .stats {
+        padding: 30px 6%;
+        grid-template-columns: 1fr;
+      }
+
+      .stat,
+      .stat:first-child {
+        padding: 20px 0;
+        border-right: 0;
+        border-bottom: 1px solid #d1d5c5;
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card,
+      .project-card:last-child {
+        min-height: 350px;
+        grid-column: auto;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 6%;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Welcome to WEK Enterprise</h1>
-    <p>Website is under construction.</p>
+
+  <header class="navbar">
+    <a href="#home" class="logo">WEK<span>.</span> ENT.</a>
+
+    <button class="menu-toggle" id="menuToggle"
+            aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" class="nav-contact">Contact Us ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2200&q=85"
+        alt="Modern building under construction"
+      >
+
+      <div class="hero-content">
+        <div class="eyebrow">Construction · Design · Excellence</div>
+
+        <h1>Building Your<br>Future, <span>Today.</span></h1>
+
+        <p class="hero-description">
+          A construction team with 20 years of experience, offering
+          one-stop services from architectural drawings and house design
+          to construction and obtaining the Certificate of Completion
+          and Compliance (CCC).
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="button button-primary">
+            Explore Our Projects <span>↗</span>
+          </a>
+          <a href="#about" class="button button-text">
+            Discover WEK <span>↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <span>Taiping, Perak · Malaysia</span>
+        <div class="scroll-indicator">
+          <span class="scroll-line"></span>
+          Scroll to explore
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="about">
+      <div>
+        <div class="section-label">01 / About WEK</div>
+        <h2>Turning ideas<br>into reality.</h2>
+      </div>
+
+      <div class="intro-copy">
+        <p>
+          We believe every great building begins with a clear vision
+          and a team committed to bringing it to life. From the first
+          architectural drawing to the final construction details,
+          we focus on quality, precision, and dependable service.
+        </p>
+
+        <p>
+          With two decades of experience and projects of various scales,
+          WEK ENT. provides an integrated approach to design and
+          construction, helping clients move from concept to completion.
+        </p>
+
+        <a href="#contact" class="inline-link">
+          Start a conversation <span>↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Company statistics">
+      <div class="stat">
+        <div class="stat-number">20<span>+</span></div>
+        <div class="stat-label">Years of experience</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">100<span>+</span></div>
+        <div class="stat-label">Projects completed</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">RM40<span>M+</span></div>
+        <div class="stat-label">Total project value</div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="section-heading">
+        <div>
+          <div class="section-label">02 / Our Portfolio</div>
+          <h2>Built with purpose.</h2>
+        </div>
+
+        <p>
+          Every project reflects our commitment to thoughtful design,
+          reliable execution, and lasting quality.
+        </p>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+            alt="Contemporary residential house"
+            loading="lazy"
+          >
+          <div class="project-info">
+            <div class="project-category">Residential</div>
+            <h3>Modern Living</h3>
+            <p>Designed around the way you live.</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80"
+            alt="Modern commercial building"
+            loading="lazy"
+          >
+          <div class="project-info">
+            <div class="project-category">Commercial</div>
+            <h3>Commercial Spaces</h3>
+            <p>Practical spaces built for business.</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80"
+            alt="Construction workers at a project site"
+            loading="lazy"
+          >
+          <div class="project-info">
+            <div class="project-category">Construction</div>
+            <h3>From Plan to Reality</h3>
+            <p>Precision at every stage of construction.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Replace the sample project cards above with actual WEK projects. -->
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <div>
+          <div class="section-label">03 / Get in Touch</div>
+          <h2>Have a project<br>in mind?</h2>
+          <p class="contact-intro">
+            Whether you're planning a new home or a construction project,
+            let's discuss how we can help bring your vision to life.
+          </p>
+
+          <a href="mailto:gynous@live.com" class="button button-primary"
+             style="margin-top: 30px;">
+            Contact Our Team ↗
+          </a>
+        </div>
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon">⌖</div>
+            <div>
+              <small>Our Location</small>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Taman+Bukit+Mas+Taiping+Malaysia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Taman Bukit Mas, Taiping, Malaysia ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">↗</div>
+            <div>
+              <small>Call Us</small>
+              <a href="tel:+60149458023">014-945 8023</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">@</div>
+            <div>
+              <small>Email Us</small>
+              <a href="mailto:gynous@live.com">gynous@live.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">f</div>
+            <div>
+              <small>Follow Us</small>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WEK ENT. on Facebook ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#home" class="logo">WEK<span>.</span> ENT.</a>
+    <p>Building dreams into reality with quality and precision.</p>
+    <p>© <span id="year"></span> WEK ENT. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("active");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    document.querySelectorAll("#navLinks a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
